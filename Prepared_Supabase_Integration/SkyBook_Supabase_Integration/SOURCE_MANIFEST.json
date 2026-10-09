@@ -1,0 +1,114 @@
+{
+  "revision": "09 October 2026",
+  "status": "Prepared partial demo; external services simulated",
+  "executed_client_tests": {
+    "command": "node --test tests/*.test.mjs",
+    "passed": 26,
+    "failed": 0,
+    "environment": "Local Node, mocked RPC and pure validator",
+    "output": "client-test-results.txt"
+  },
+  "not_executed": [
+    "PostgreSQL migration",
+    "SQL/RLS checks",
+    "API JWT/owner tests",
+    "database concurrency/capacity/expiry",
+    "Netlify browser flow connected to Supabase",
+    "most of the 56 requirement-aligned target-system cases",
+    "NFR measurement",
+    "Rehearsal browser layout verification"
+  ],
+  "files": [
+    {
+      "path": "README_VI.md",
+      "sha256": "8a82a14a032e87aabd7f5ddeab2915dfa218f3af747d932d7bc2002a7423fa7b"
+    },
+    {
+      "path": "STATUS.md",
+      "sha256": "934b23323789951b8ed3424115da048622b911e3213c5a94f4f9d2cb7ee6a754"
+    },
+    {
+      "path": "booking-adapter.mjs",
+      "sha256": "4a55a5a854f097aab5415969bbb352d808df1720b5a0ffe8a7d4727bcfe80ac2"
+    },
+    {
+      "path": "client-test-results.txt",
+      "sha256": "17e2f74c8bb275529ead234371a36cd1f4d1ead8e4af3c621ad66231958b714c"
+    },
+    {
+      "path": "config.example.mjs",
+      "sha256": "41aa8b4fb585f711682948a8e275f627ffb794a8fcba6d5cd5926c580e7650ef"
+    },
+    {
+      "path": "config.mjs",
+      "sha256": "41aa8b4fb585f711682948a8e275f627ffb794a8fcba6d5cd5926c580e7650ef"
+    },
+    {
+      "path": "database/01_schema.sql",
+      "sha256": "c2fcdb0d0841b4d05745e40920de7833c4bcc3c000789bfbd91cf24c6263b493"
+    },
+    {
+      "path": "database/02_seed.sql",
+      "sha256": "31e4097e5e8af4ecc3ddb0ecec181fa1cb80a9733f9df52004cad39d739bc3fa"
+    },
+    {
+      "path": "database/03_verify.sql",
+      "sha256": "949bdb6bd0f251f21b7aa004fd4c2e5a1dfe177717d2f437f8f7d23448c88b29"
+    },
+    {
+      "path": "demo.html",
+      "sha256": "58341d1a65eedc7439dda6f7712f64a930df096f6d65b04a0e6354333db1c27f"
+    },
+    {
+      "path": "integrate-existing-web.mjs",
+      "sha256": "b786ad8b764695a058fa65c698248943c083a018b4b0f6e35732bb59a6748c1f"
+    },
+    {
+      "path": "name-validation.mjs",
+      "sha256": "47f0ffdfe9124212b676532a116029aec4864da4479b688cf77473b4f464fddb"
+    },
+    {
+      "path": "netlify.toml",
+      "sha256": "27e9b5117232bb88e7760eece75ad13e9819397d233110a645cb5f15c466a49c"
+    },
+    {
+      "path": "package.json",
+      "sha256": "838dc7ae60251da4072bab3b9924d3b0436a8db0f48b5ad2f49bb102e5b91357"
+    },
+    {
+      "path": "rehearsal-check-results.json",
+      "sha256": "ef6f67da674a7e6e79804993e028ff1fbff3cdbd35d4075096400a3ac917c681"
+    },
+    {
+      "path": "rehearsal-checks.mjs",
+      "sha256": "dd0e933ccb81ec6f59682e10d9da2576ff76bd7d9836458dc25abf0b85ed4b89"
+    },
+    {
+      "path": "rehearsal.html",
+      "sha256": "5e6d82b463f1e106c0b79625a6d206f68d244120f9092178412429e8ec9cc293"
+    },
+    {
+      "path": "rehearsal.mjs",
+      "sha256": "7f3e9f2155ba5eac7dc570414ab1bb99fcd08563f9e0993898eb61a91170cbb2"
+    },
+    {
+      "path": "serve-demo.mjs",
+      "sha256": "366080c9bc37e532994d5869750c6e52193432210bdf979903ceda678b08bb3d"
+    },
+    {
+      "path": "tests/adapter.test.mjs",
+      "sha256": "f80190f2bbde4c68513d88083578c6f026650712535622f25752badfa2437843"
+    },
+    {
+      "path": "tests/name-validation.test.mjs",
+      "sha256": "961c3e56173e2bc964297172ecf2bb2ef6ea2b7d2e501b6d2132fdbab4748124"
+    }
+  ],
+  "executed_rehearsal_checks": {
+    "command": "node rehearsal-checks.mjs",
+    "passed": 8,
+    "failed": 0,
+    "environment": "Node with DOM stubs and in-memory mock RPC, no browser rendering or real database",
+    "output": "rehearsal-check-results.json"
+  }
+}

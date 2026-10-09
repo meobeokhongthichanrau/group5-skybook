@@ -1,0 +1,34 @@
+✔ invalid traveler data never calls database (2.85363ms)
+✔ unauthenticated request cannot create booking (1.407505ms)
+✔ concurrent repeated submit shares one operation and one receipt (10.450625ms)
+✔ network failure then reload/retry reuses the original request key (3.087299ms)
+✔ unknown original request prevents edited payload or new operation (1.007918ms)
+✔ recovery performs database lookup without creating another booking (0.573568ms)
+✔ metadata store contains no personal details (0.598545ms)
+✔ read loads from RPC and preserves original hold expiry (0.216764ms)
+✔ simulation always calls server RPC and reuses its operation key (0.362963ms)
+✔ new explicit booking uses a new key only after receipt exists (1.349809ms)
+✔ traveler count limits and seat selection match MVP scope (0.297174ms)
+✔ different concurrent input cannot silently reuse an in-flight request (5.331196ms)
+✔ explicit database validation rejection allows correcting the input (0.727559ms)
+✔ Unicode name accepted: Nguyễn Tiến Phát (1.475808ms)
+✔ Unicode name accepted: Anne-Marie O'Neil (0.226338ms)
+✔ Unicode name accepted: D’Arcy (0.728119ms)
+✔ Unicode name accepted: 李明 (0.096294ms)
+✔ Unicode name accepted: Алексей Иванов (0.154852ms)
+✔ decomposed Vietnamese name normalizes to NFC (0.231186ms)
+✔ invalid name rejected: "Khoa123" (0.324956ms)
+✔ invalid name rejected: "Khoa@" (0.14689ms)
+✔ invalid name rejected: "😀 Khoa" (0.308662ms)
+✔ invalid name rejected: "---" (0.543824ms)
+✔ invalid name rejected: "A" (0.110946ms)
+✔ invalid name rejected: "Khoa\nPham" (0.785506ms)
+✔ name length counts Unicode code points (0.176795ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 108.722164

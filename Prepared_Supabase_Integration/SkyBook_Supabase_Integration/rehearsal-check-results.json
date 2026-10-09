@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-09T02:37:39.127Z",
+  "environment": "Node with DOM stubs and in-memory mock RPC. No browser layout, PostgreSQL, RLS, Gateway, Inventory or Netlify verification.",
+  "results": [
+    {
+      "name": "Initial receipt is empty and source discloses memory-only mock mode",
+      "status": "PASS"
+    },
+    {
+      "name": "Create pending booking, 30-minute deadline and no PNR",
+      "status": "PASS"
+    },
+    {
+      "name": "Repeated create preserves key, booking and deadline",
+      "status": "PASS"
+    },
+    {
+      "name": "Lost response recovers original booking without a second create",
+      "status": "PASS"
+    },
+    {
+      "name": "Unresolved request blocks changed data and a new key",
+      "status": "PASS"
+    },
+    {
+      "name": "Invalid name is rejected before an RPC",
+      "status": "PASS"
+    },
+    {
+      "name": "Mock confirmation records money and commit markers, same-request read is stable",
+      "status": "PASS"
+    },
+    {
+      "name": "Unpaid expiry disables payment and reset clears the mock",
+      "status": "PASS"
+    }
+  ],
+  "passed": 8,
+  "failed": 0
+}

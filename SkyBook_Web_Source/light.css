@@ -1,0 +1,229 @@
+/* SkyBook light palette: clear blue actions and readable white surfaces. */
+:root{--ink:#142d4e;--muted:#4c617b;--blue:#085fd2;--blue-dark:#064da9;--line:#d8e4f0;--canvas:#f3f7fc;--shadow:0 10px 28px #163e7112;color-scheme:light;background:var(--canvas)}
+body{background:#f3f7fc;color:var(--ink)}
+option{background:#fff;color:#142d4e}
+input::placeholder{color:#667b95}
+.button-primary{background:#0963d6;color:#fff;box-shadow:0 5px 14px #085fd225}
+.button-primary:hover:not(:disabled){background:#074fad;color:#fff;box-shadow:0 7px 18px #085fd238}
+.button-outline{background:#fff;color:#0755b6;border-color:#9bbde6}
+.button-outline:hover:not(:disabled){background:#edf5ff;border-color:#075cc9}
+.button-selected{background:#e8f7ed;color:#176b43;border-color:#8ecba7}
+.icon-button{background:#edf4fd;color:#23466e;border-color:#d5e4f4}
+.icon-button:hover{background:#dceafa}
+.eyebrow,.summary-kicker,.modal-kicker{color:#0759bc}
+.subtle{color:#526986}
+.topbar{background:#fff;border-bottom:1px solid #e1eaf4;box-shadow:0 2px 14px #153b6210}
+.brand{color:#0864d5}
+.brand-icon{background:#e9f3ff;border-color:#c5dfff}
+.brand-lockup strong{color:#1359b4}
+.brand-lockup small{color:#465f81}
+.nav-link{color:#344d6c}
+.nav-link.active{background:#edf5ff;color:#0759bc}
+.nav-link.active:after{background:#0867d9;box-shadow:none}
+.nav-link:hover{color:#0759bc;background:#f2f7fd}
+.language-control,.profile-pill{color:#29415f}
+.avatar{background:#e6f2ff;color:#0859c2;border-color:#bbd8f9}
+.demo-strip{background:#fff5e3;color:#704d18;border-color:#f0ddb9}
+.demo-strip strong{color:#67430f}
+.demo-dot{background:#a8731b}
+.hero{background:#dbeaf8}
+.hero-image{opacity:.7}
+.hero-wash{background:linear-gradient(90deg,#f3f9fffa 0%,#eff8fff0 26%,#eaf6ffe0 44%,#ebf6ff26 75%),linear-gradient(0deg,#f4f9ff9c,transparent 56%)}
+.hero .eyebrow{color:#21558e}
+.hero h1{color:#143256}
+.hero-gradient{background:linear-gradient(100deg,#1267cb,#3b83d8 58%,#546bbb);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p:not(.eyebrow){color:#37516e}
+.hero-offer-link{background:#ffffffdc;color:#0759bc;border-color:#9dc3f0;font-weight:700;box-shadow:0 4px 12px #15467b16}
+.hero-offer-link:hover{background:#eaf4ff;border-color:#4e94e2}
+.search-panel{background:#fff;border-color:#cdddeb;box-shadow:0 16px 42px #1f497d1b,inset 0 1px #fff}
+.search-panel:before,.flight-card:before,.offer-card:before{background:radial-gradient(420px circle at var(--pointer-x,-500px) var(--pointer-y,-500px),#7aaaff16,transparent 75%)}
+.search-kicker{color:#426389}
+.search-secure{color:#3e627f}
+.search-secure svg{color:#16774e}
+.trip-tabs{border-color:#d9e6f2}
+.trip-tab{color:#2e4b6c}
+.trip-tab.active{color:#0758bd;background:#e8f3ff;border-color:#9dc3f2;box-shadow:none}
+.trip-tab:hover{color:#0758bd;background:#eff6ff}
+.field{color:#334d6c}
+.field-control{background:#fff;border-color:#b8cce0;box-shadow:none;color:#142d4e}
+.field-control:focus-within{border-color:#0870dd;box-shadow:0 0 0 3px #0876eb1d}
+.field-control svg{color:#567b9e}
+.field-control:has([aria-invalid="true"]){border-color:#bc3434;background:#fff8f8}
+.field-error{color:#a02626}
+.swap-button{color:#075bc2;background:#e7f2ff;border-color:#cce1fa}
+.swap-button:hover{background:#d5eaff}
+.multi-legs{border-color:#d9e4ef}
+.add-leg{background:#e8f3ff;color:#075bbf;border-color:#b6d5fa}
+.search-error{background:#fff0f1;color:#9f292e;border-color:#e9b8c1}
+.search-hint,.inline-warning,.results-update{background:#fff8e7;color:#79551b;border-color:#ead8ad}
+.search-steps{display:flex;flex-wrap:wrap;align-items:center;gap:9px 22px;margin-top:17px;padding:13px 3px 0;border-top:1px solid #e0eaf3;color:#415b78;font-size:13px;font-weight:600}
+.search-steps span{display:inline-flex;align-items:center;gap:8px}
+.search-steps b{width:23px;height:23px;border-radius:50%;display:grid;place-items:center;background:#e8f3ff;color:#075bc2;border:1px solid #bdd8f6;font-size:12px}
+.route-chips button{background:#fff;border-color:#d0dfed;color:#23527e}
+.route-chips button span{color:#526e88}
+.route-chips button:hover{background:#eaf4ff;border-color:#83afe1}
+.route-discovery-label{color:#4d6986}
+.section-heading h2{color:#143455}
+.results-context,.sort-label{color:#516982}
+.sort-label select{background:#fff;border-color:#b8cce1;color:#243f5f}
+.flight-filters{background:#eaf2fa;border-color:#d1e1f0}
+.flight-filters>label:not(.direct-toggle){color:#355575}
+.flight-filters select{background:#fff;border-color:#b9cde0;color:#243d5b}
+.direct-toggle{color:#334f6c}
+.direct-toggle input{accent-color:#0963d6}
+.clear-filters{color:#0759bc}
+.results-meta{color:#4e6680}
+#resultCount{color:#2b4b6c}
+.leg-pill{background:#fff;border-color:#c9dbea;color:#395877}
+.leg-pill.current{background:#e8f3ff;border-color:#5596dc;color:#0756b4}
+.leg-pill.done:before{color:#187143}
+.compare-bar{background:#fff;border-color:#bed4ec}
+.compare-bar.has-items{background:#f1f7ff;border-color:#488fe2;box-shadow:0 7px 23px #194b811c}
+.compare-bar p{color:#425f7d}
+.compare-bar strong{color:#174576}
+.compare-chips>button:not(.clear-filters){background:#e2efff;border-color:#a6c9f2;color:#174e87}
+.flight-card{background:#fff;border-color:#d5e2ef;box-shadow:0 3px 12px #244c7b0c}
+.flight-card:hover{border-color:#66a0e1;box-shadow:0 10px 28px #204e7c1b}
+.flight-card.selected{background:#f5faff;border-color:#0866d4;box-shadow:0 0 0 3px #4093e51a}
+.flight-card.in-comparison{border-color:#5e8fdf}
+.airline-name{color:#173456}
+.airline-sub{color:#536d88}
+.airline-mark{border-color:#dae6f1}
+.airline-mark.vn{background:#fff4d7;color:#896117}
+.airline-mark.vj{background:#fff0ef;color:#be2b34}
+.airline-mark.ba{background:#e6f6ed;color:#186e48}
+.airline-mark.vt{background:#e9f2ff;color:#245c9c}
+.fare-badge{background:#eaf6ee;color:#14663d;border-color:#c8e5d1}
+.flight-time strong{color:#122f51}
+.flight-time>span,.route-visual{color:#46627e}
+.route-visual .line:before,.route-visual .line:after{background:#9eb6d0}
+.route-visual svg{color:#0c65c9}
+.fare-label{color:#425f7d}
+.fare>strong,.comparison-price{color:#0758be}
+.tax-included{color:#236146}
+.group-total,.flight-details{color:#45627f}
+.price-plus{color:#68809a}
+.fare-conditions summary{color:#17558f;text-decoration-color:#89b2d6}
+.fare-conditions p{background:#f2f7fc;border-color:#dce7f1;color:#405b77}
+.flight-actions{background:#f8fbff;border-color:#e0eaf3}
+.compare-toggle{color:#0759bd;background:#edf5ff;border:1px solid #bdd8f4;padding-inline:11px;font-weight:700}
+.compare-toggle.is-added{color:#176b45;background:#eaf8f0;border-color:#96d0ad}
+.compare-toggle:hover:not(:disabled){color:#074da3;background:#e1efff}
+.empty-state{background:#fff;border-color:#a9c6e2}
+.empty-state h3{color:#173b63}
+.empty-state>svg{color:#075ac0}
+.summary-card{background:#fff;border-color:#d2e0ee;box-shadow:0 13px 34px #20487514}
+.summary-heading h2{color:#183556}
+.summary-icon{color:#075dc5}
+.selection-progress,.summary-segment-top{color:#4b6681}
+.summary-segment{border-color:#dce7f2}
+.summary-segment-top strong{color:#0758bb}
+.summary-airline,.summary-route span{color:#425e79}
+.summary-route svg{color:#6b93b8}
+.summary-placeholder{background:#f4f9ff;border-color:#a8c6e6;color:#275887}
+.summary-placeholder span{color:#506b87}
+.price-line{color:#475f7a}
+.price-line strong{color:#17395b}
+.price-total{background:#edf5ff;border-color:#c9dffa}
+.price-total strong{color:#0757b8}
+.price-total span:last-child{color:#3f6081}
+.demo-notice{background:#fff8e8;border-color:#e9d7aa;color:#654716}
+.demo-notice p{color:#765a2b}
+.summary-footnote{color:#526b86}
+.voucher-teaser{color:#0758bd;background:#edf5ff;border-color:#bad6f8;font-size:14px;font-weight:700}
+.voucher-teaser:hover{background:#dfedff}
+.benefits{border-color:#dce7f2}
+.benefits strong{color:#204264}
+.benefits small{color:#526c86}
+.benefit-icon{color:#0867d2}
+.site-footer{background:#102f54;border-color:#234b77;color:#d4e4f7}
+.site-footer strong{color:#fff}
+.utility-view{background:linear-gradient(#e5f1ff,#f3f7fc 330px)}
+.utility-content h1{color:#153c65}
+.utility-intro{color:#506a83}
+.booking-card,.lookup-form,.lookup-card,.faq-list{background:#fff;border-color:#d3e1ee}
+.booking-card p{color:#4e6680}
+.booking-card h3,.lookup-card h3{color:#173757}
+.status-badge{background:#e6f6ed;color:#1a6844}
+.status-badge.cancelled{background:#eef1f5;color:#4e6479}
+.lookup-notice{background:#eef5fd;color:#3f5f81;border-color:#d1e2f2}
+.lookup-notice.warning{background:#fff5e1;color:#765219}
+.lookup-card dt{color:#4f6b86}
+.lookup-card dd{color:#234564}
+.faq-list summary{color:#183b61}
+.faq-list p{color:#506b85}
+.faq-list details[open]{background:#f6faff}
+.offer-card,.offer-card:nth-child(2){background:linear-gradient(135deg,#fff,#f2f8ff);border-color:#c6dff7;box-shadow:0 9px 25px #204d8010}
+.offer-card:nth-child(2){background:linear-gradient(135deg,#fff,#f7f4ff)}
+.offer-card:hover{border-color:#64a4e8}
+.offer-icon{background:#e6f1ff;border-color:#b8d7f7;color:#075ac0}
+.offer-tag{color:#4d6782}
+.offer-value{color:#153e69}
+.offer-card h2{color:#0759be;font-weight:700}
+.offer-card>p:not(.offer-value){color:#45627e}
+.offer-bottom{border-color:#cfdfef}
+.offer-bottom>span,.offer-rules{color:#526b84}
+.offer-rules>svg{color:#075ac0}
+.modal-backdrop{background:#112b4ca6;backdrop-filter:blur(6px)}
+.checkout-modal{background:#fff;border-color:#c3d8ed;box-shadow:0 30px 80px #18365a5c}
+.checkout-modal h2{color:#153a61}
+.checkout-modal h2:focus{outline:none}
+.modal-copy{color:#4e6780}
+.modal-itinerary{background:#f0f6fd;border-color:#cddfed;color:#3c5d7d}
+.modal-close{background:#edf5ff;color:#154a80}
+.checkout-steps{border-color:#d5e2ef;color:#546f88}
+.checkout-steps li:after{background:#cbddeb}
+.checkout-steps li>span{border-color:#a8c7e7;background:#f5faff}
+.checkout-steps li.current{color:#0758bd;font-weight:750}
+.checkout-steps li.current>span{background:#0962d2;color:#fff;border-color:#0962d2;box-shadow:0 3px 9px #075ebd36}
+.checkout-steps li.complete{color:#176b45}
+.checkout-steps li.complete>span{border-color:#90caa7;background:#e7f6ed}
+.checkout-order{background:#f7fbff;border-color:#ccdff1}
+.checkout-order h3{color:#173b61}
+.checkout-order>p,.contact-privacy{color:#506c86}
+.voucher-box,.checkout-ledger,.checkout-ledger .ledger-total{border-color:#d4e1ee}
+.voucher-box label{color:#254968}
+.voucher-input-row input{background:#fff;color:#1c3a5a;border-color:#afc8e2}
+.voucher-input-row input[aria-invalid="true"]{border-color:#be4444}
+.voucher-hint,.checkout-ledger>p{color:#526e88}
+.voucher-feedback{color:#166540}
+.voucher-feedback.error{color:#a22930}
+.voucher-applied{background:#e9f6ee;border-color:#aad8b9;color:#176643}
+.voucher-applied span{color:#38634c}
+.checkout-ledger>div{color:#435f7a}
+.checkout-ledger strong{color:#153555}
+.ledger-total>span{color:#365676}
+.checkout-ledger .ledger-total strong{color:#0759bd}
+.discount-line,.checkout-ledger .discount-line,.checkout-ledger .discount-line strong,.booking-card .discount-line{color:#176c46}
+.qr-column{background:#f3f8ff;border-color:#c7ddf3}
+.qr-label{color:#1d4369;font-weight:700}
+.qr-frame{box-shadow:0 8px 24px #1b4e811b}
+.qr-expiry,.qr-note{color:#4b6681}
+.qr-expiry strong{color:#173d66}
+.payment-preview-link{color:#075abc;border-color:#8db9e7;font-weight:700}
+.payment-reference span{color:#4b6884}
+.payment-reference strong{color:#1e5082}
+.payment-controls .modal-copy{color:#4d6881}
+.payment-divider{color:#526b83}
+.payment-divider:before,.payment-divider:after{background:#d1e1ef}
+.back-details{color:#0757b9;font-weight:700}
+.back-details:hover{color:#053f91}
+.success-emblem{background:#e7f6ed;color:#167248;box-shadow:none}
+.reference-code{background:#edf5ff;border-color:#84afe1;color:#0759be}
+.confirmation-ticket{background:#f3f8fe;border-color:#cddff0}
+.confirmation-ticket>div>span,.confirmation-ticket>p{color:#4f6d87}
+.confirmation-ticket .discount-line{color:#176c46}
+.modal-note{color:#506b86}
+.toast{background:#173e68;color:#fff;border-color:#a5c9f2}
+.booking-card .booking-payment{color:#396780}
+.payment-page{background:linear-gradient(#eaf5fff2,#dfeeffec),url('./orbital-earth.webp') center/cover fixed}
+.payment-page .payment-shell{background:#fff;border-color:#c1d9f1;box-shadow:0 23px 66px #1d4d7a35}
+.payment-brand{color:#0758bd}
+.payment-brand svg{color:#0964cb}
+.payment-page h1{color:#153d64}
+.payment-amount{color:#0759bd}
+.payment-page .sample-tag{background:#fff6e5;border-color:#ecd2a2;color:#704d13}
+.payment-page .confirmation-code{color:#0759ba;background:#eaf4ff;border-color:#8cb6e5}
+.payment-page .payment-reference{border-color:#d5e2ee}
+@media(max-width:900px){.primary-nav{background:#fff;border-color:#d9e6f2;box-shadow:0 14px 30px #1b467528}.nav-link.active{background:#e8f3ff}.summary-card{background:#fff}}
+@media(max-width:680px){.hero{height:365px}.hero-wash{background:linear-gradient(90deg,#f4f9fff8,#ebf6fff0 58%,#e7f5ff91),linear-gradient(0deg,#f4f9ff8c,transparent 70%)}.field-control{background:#fff}.flight-main .fare{background:#eef6ff;border-color:#d0e3f8}.search-steps{gap:9px 15px;font-size:12px}.search-steps span:last-child{width:100%}.compare-bar.has-items{background:#eff6ff}.checkout-steps{font-size:12px}.modal-backdrop{padding:12px}.checkout-modal{padding-bottom:72px}.payment-page{background:#eaf4ff}}

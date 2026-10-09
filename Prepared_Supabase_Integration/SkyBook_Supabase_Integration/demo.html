@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SkyBook database integration test</title>
+<style>body{font:16px system-ui;background:#eff6ff;color:#102b49;margin:0}main{max-width:950px;margin:32px auto;padding:24px}h1{color:#075985}section{background:white;padding:24px;margin:20px 0;border:1px solid #b6d4eb;border-radius:12px}.fields{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}label{display:grid;gap:6px}input,select,button{font:inherit;padding:10px;border:1px solid #8aacc6;border-radius:6px}button{background:#075985;color:white;cursor:pointer;margin:10px 6px 0 0}button:disabled{opacity:.5}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#102b49;color:#fff;padding:18px}.notice{border-left:5px solid #d97706;padding-left:14px}#message{white-space:pre-wrap}fieldset{margin:15px 0;border:1px solid #b6d4eb} @media(max-width:600px){main{padding:14px}.fields{grid-template-columns:1fr}}</style>
+<main><h1>SkyBook database integration test</h1>
+<p class="notice">Companion test page. Not the current Netlify application. Fictional flights and fares. Inventory and Gateway are simulated. No real payment or ticket.</p>
+<section><h2>1. Sign in as a demo customer</h2><p>Fill config.mjs first. Use a dedicated test user created in Supabase Authentication, not your Supabase dashboard credentials.</p>
+<form id="auth"><div class="fields"><label>Test user email<input id="email" type="email" autocomplete="username" required></label><label>Test user password<input id="password" type="password" autocomplete="current-password" required></label></div><button>Sign in</button></form></section>
+<section><h2>2. Create booking</h2><form id="booking"><div class="fields"><label>Direct flight<select id="flight" required><option value="">Sign in and load flights</option></select></label><label>Fare class<select id="fare"><option>Economy Basic</option><option>Economy Flex</option></select></label></div>
+<fieldset><legend>Booker</legend><div class="fields"><label>Full name<input id="b-name" value="Demo Booker" required></label><label>Date of birth<input id="b-dob" type="date" value="1990-01-01" required></label><label>Email<input id="b-email" type="email" value="booker@example.test" required></label><label>Phone<input id="b-phone" value="0900000000" required></label></div></fieldset>
+<fieldset><legend>Traveler 1</legend><div class="fields"><label>Full name<input id="t-name" value="Demo Traveler" required></label><label>Date of birth<input id="t-dob" type="date" value="2000-01-01" required></label><label>Email<input id="t-email" type="email" value="traveler@example.test" required></label><label>Phone<input id="t-phone" value="0900000001" required></label></div></fieldset>
+<p>Adapter and database support 1-9 travelers. This small test form displays one traveler.</p><button type="submit">Create booking</button></form>
+<button id="recover">Read / recover from database</button><button id="simulate">Simulate Gateway success and Inventory commit</button><button id="new">Start a new booking request</button>
+<p id="countdown"></p><p id="message" role="status"></p><pre id="receipt">No database receipt yet.</pre></section></main>
+<script type="module">
+import {createClient} from 'https://esm.sh/@supabase/supabase-js@2';
+import {SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY} from './config.mjs';
+import {createBookingAdapter} from './booking-adapter.mjs';
+const $=id=>document.getElementById(id), status=message=>$('message').textContent=message;
+let client,adapter,receipt;
+function show(data){receipt=data;if(!data)$('countdown').textContent='';$('receipt').textContent=JSON.stringify(data,null,2);status(data?'Database receipt loaded. Service outcomes carry SIMULATED markers.':'No booking found for this request. Retry the original submission with its existing key.');}
+try{
+ if(!/^https:\/\/[^/]+$/.test(SUPABASE_URL)||SUPABASE_URL.includes('YOUR_PROJECT')||SUPABASE_PUBLISHABLE_KEY.includes('YOUR_')||SUPABASE_PUBLISHABLE_KEY.startsWith('sb_secret_'))throw new Error('Configure only the public project URL and publishable/anon key in config.mjs.');
+ if(SUPABASE_PUBLISHABLE_KEY.startsWith('ey')){const role=JSON.parse(atob(SUPABASE_PUBLISHABLE_KEY.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'))).role;if(role!=='anon')throw new Error('A legacy browser key must have the anon role.');}
+ client=createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+ adapter=createBookingAdapter({supabase:client,storage:sessionStorage});
+ const {data,error}=await client.rpc('skybook_list_flights');if(error)throw error;
+ $('flight').replaceChildren(new Option('Choose a flight',''));
+ for(const f of data??[])$('flight').add(new Option(`${f.flight_number} ${f.origin}-${f.destination} ${new Date(f.departure_time).toLocaleString()} (sample fares)`,f.flight_id));
+ status('Database functions reachable. Sign in as a demo customer to create a booking.');
+}catch(error){status(error.message);}
+$('auth').addEventListener('submit',async event=>{event.preventDefault();if(!client)return;const {error}=await client.auth.signInWithPassword({email:$('email').value,password:$('password').value});$('password').value='';status(error?error.message:'Demo customer signed in.');});
+function person(prefix){return {full_name:$(prefix+'-name').value,dob:$(prefix+'-dob').value,email:$(prefix+'-email').value,phone:$(prefix+'-phone').value};}
+$('booking').addEventListener('submit',async event=>{event.preventDefault();const button=event.submitter;if(!adapter||button.disabled)return;button.disabled=true;
+ try{show(await adapter.createBooking({flightId:$('flight').value,fareClass:$('fare').value,booker:person('b'),travelers:[person('t')]}));}catch(error){status(error.message+' Keep the original request for recovery.');}finally{button.disabled=false;}});
+$('recover').onclick=async()=>{try{show(await adapter.recoverBooking());}catch(error){status(error.message);}};
+$('simulate').onclick=async()=>{try{if(!receipt?.booking_id)throw new Error('Read your booking first.');show(await adapter.simulateConfirmation(receipt.booking_id));}catch(error){status(error.message);}};
+$('new').onclick=async()=>{try{await adapter.startNewBooking();receipt=null;$('countdown').textContent='';$('receipt').textContent='Ready for a new request.';status('Ready for a new request.');}catch(error){status(error.message);}};
+setInterval(()=>{if(!receipt?.hold_expiry)return;const seconds=Math.max(0,Math.floor((Date.parse(receipt.hold_expiry)-Date.now())/1000));$('countdown').textContent=receipt.status==='PENDING_PAYMENT'?`Server hold deadline: ${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}. Reload uses the original deadline.`:`Booking status: ${receipt.status}. No real ticket.`;},1000);
+</script></html>

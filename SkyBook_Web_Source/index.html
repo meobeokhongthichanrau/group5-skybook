@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=9d74d3fa-3118-4ac1-bcde-2ff0dbbe2cd1
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f3f7fc" />
+    <meta name="description" content="Explore sample flights, compare fares, and create a demo booking with SkyBook." />
+    <title>SkyBook — Explore flights</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230a59cf'/%3E%3Cpath d='M47 14 29 30 15 25l-4 4 12 9-5 8 3 3 8-5 9 12 4-4-5-14 16-18c2-2 2-6 0-8s-4-2-6 0Z' fill='white'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./orbit.css" />
+    <link rel="stylesheet" href="./light.css" />
+    <script defer src="./vendor/qrcode.js"></script>
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" class="svg-defs" aria-hidden="true">
+      <symbol id="i-plane" viewBox="0 0 24 24"><path d="M21 3 3 10l7 3 3 8 8-18Z"/><path d="m10 13 5-5"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22s7-6.1 7-12a7 7 0 0 0-14 0c0 5.9 7 12 7 12Z"/><circle cx="12" cy="10" r="2.4"/></symbol>
+      <symbol id="i-swap" viewBox="0 0 24 24"><path d="M4 7h16m-4-4 4 4-4 4M20 17H4m4-4-4 4 4 4"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="12" cy="7.2" r="3.2"/><path d="M5 21v-2.1a7 7 0 0 1 14 0V21H5Z"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5 19 19M19 5 5 19"/></symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c-3 3-3 15 0 18m0-18c3 3 3 15 0 18"/></symbol>
+      <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M3 6h18v4a2 2 0 0 0 0 4v4H3v-4a2 2 0 0 0 0-4V6Z"/><path d="M12 6v12" stroke-dasharray="2 2"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 2 8 3v6c0 5-3 9-8 11-5-2-8-6-8-11V5l8-3Z"/><path d="m8 12 3 3 5-6"/></symbol>
+      <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 13v-2a8 8 0 0 1 16 0v2M4 13H2v5h4v-5H4Zm16 0h2v5h-4v-5h2Zm0 5a4 4 0 0 1-4 4h-3"/></symbol>
+      <symbol id="i-bag" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M8 8V5a4 4 0 0 1 8 0v3M3 14h18"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+    </svg>
+
+    <header class="topbar">
+      <div class="topbar-inner wrap">
+        <button class="brand" type="button" data-view="home" aria-label="SkyBook home">
+          <span class="brand-icon"><svg><use href="#i-plane"/></svg></span>
+          <span class="brand-lockup"><strong>SkyBook</strong><small>ORBIT EDITION</small></span>
+        </button>
+        <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
+          <button class="nav-link active" type="button" data-view="home" data-i18n="navHome">Home</button>
+          <button class="nav-link" type="button" data-view="flights" data-i18n="navFlights">Flights</button>
+          <button class="nav-link" type="button" data-view="offers" data-i18n="navOffers">Offers</button>
+          <button class="nav-link" type="button" data-view="bookings" data-i18n="navBookings">My Bookings</button>
+          <button class="nav-link" type="button" data-view="manage" data-i18n="navManage">Manage Booking</button>
+          <button class="nav-link" type="button" data-view="support" data-i18n="navSupport">Support</button>
+        </nav>
+        <div class="header-actions">
+          <label class="language-control" aria-label="Language">
+            <svg><use href="#i-globe"/></svg>
+            <select id="languageSelect" aria-label="Language"><option value="en">EN</option><option value="vi">VI</option></select>
+          </label>
+          <div class="profile-pill"><span class="avatar">D</span><span data-i18n="demoAccount">Demo account</span></div>
+          <button class="menu-toggle icon-button" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav"><svg><use href="#i-menu"/></svg></button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="demo-strip"><div class="wrap"><span class="demo-dot"></span><strong data-i18n="demoTitle">Demo · No real tickets</strong><span data-i18n="demoDetail">Sample flights only. No ticket is issued and no payment is collected.</span></div></div>
+      <section class="view active" id="homeView">
+        <div class="hero">
+          <div class="hero-image" role="img" aria-label="Earth’s luminous horizon viewed from space"></div>
+          <div class="hero-wash"></div>
+          <div class="wrap hero-copy">
+            <p class="eyebrow" data-i18n="heroEyebrow">YOUR NEXT JOURNEY STARTS HERE</p>
+            <h1><span data-i18n="heroLine1">Your next journey.</span><span class="hero-gradient" data-i18n="heroLine2">Beyond the ordinary.</span></h1>
+            <p data-i18n="heroSubtitle">Flights across Vietnam. A little closer to the stars.</p>
+            <button type="button" class="hero-offer-link" data-view="offers"><svg><use href="#i-ticket"/></svg><span data-i18n="exploreOffers">Explore Orbit offers</span><svg><use href="#i-arrow"/></svg></button>
+          </div>
+        </div>
+
+        <div class="wrap search-wrap" id="searchTop">
+          <section class="search-panel" aria-label="Flight search">
+            <div class="search-panel-top"><span class="search-kicker" data-i18n="searchKicker">01 / PLAN YOUR FLIGHT</span><span class="search-secure"><svg><use href="#i-shield"/></svg><span data-i18n="allInHint">All prices include taxes &amp; fees</span></span></div>
+            <div class="trip-tabs" role="tablist" aria-label="Trip type">
+              <button type="button" class="trip-tab active" role="tab" aria-selected="true" data-trip="one" data-i18n="oneWay">One-way</button>
+              <button type="button" class="trip-tab" role="tab" aria-selected="false" data-trip="round" data-i18n="roundTrip">Round-trip</button>
+              <button type="button" class="trip-tab" role="tab" aria-selected="false" data-trip="multi" data-i18n="multiCity">Multi-city</button>
+            </div>
+            <form id="searchForm" novalidate>
+              <div class="search-fields">
+                <label class="field location-field"><span data-i18n="from">From</span><span class="field-control"><svg><use href="#i-pin"/></svg><select id="origin" aria-label="Origin"></select></span></label>
+                <button type="button" id="swapBtn" class="swap-button" aria-label="Swap origin and destination" title="Swap airports"><svg><use href="#i-swap"/></svg></button>
+                <label class="field location-field"><span data-i18n="to">To</span><span class="field-control"><svg><use href="#i-pin"/></svg><select id="destination" aria-label="Destination"></select></span></label>
+                <label class="field date-field"><span data-i18n="departure">Departure Date</span><span class="field-control"><svg><use href="#i-calendar"/></svg><input id="departDate" type="date" required aria-label="Departure date" /></span></label>
+                <label class="field date-field return-field" id="returnField" hidden><span data-i18n="returnDate">Return Date</span><span class="field-control"><svg><use href="#i-calendar"/></svg><input id="returnDate" type="date" aria-label="Return date" /></span></label>
+                <label class="field"><span data-i18n="passengers">Passengers</span><span class="field-control"><svg><use href="#i-users"/></svg><select id="passengerCount" aria-label="Passenger count"></select></span></label>
+                <label class="field"><span data-i18n="travelClass">Travel Class</span><span class="field-control"><svg><use href="#i-bag"/></svg><select id="travelClass" aria-label="Travel class"><option value="basic">Economy Basic</option><option value="flex">Economy Flex</option></select></span></label>
+                <button type="submit" class="button button-primary search-button"><svg><use href="#i-search"/></svg><span data-i18n="searchFlights">Search Flights</span></button>
+              </div>
+              <div id="multiLegs" class="multi-legs" hidden></div>
+              <div class="search-error" id="searchError" role="alert" tabindex="-1" hidden></div><p id="searchHint" class="search-hint" role="status" hidden></p>
+            </form>
+            <div class="search-steps" aria-label="Booking steps"><span><b>1</b><span data-i18n="stepSearch">Search flights</span></span><span><b>2</b><span data-i18n="stepSelect">Select a flight</span></span><span><b>3</b><span data-i18n="stepCheckout">Add a voucher &amp; try demo payment</span></span></div>
+          </section>
+        </div>
+
+        <div class="wrap route-discovery" aria-label="Popular sample routes">
+          <span class="route-discovery-label" data-i18n="exploreRoutes">Explore routes</span>
+          <div class="route-chips" id="routeShortcuts">
+            <button type="button" data-route="SGN-DAD">SGN → DAD <span data-i18n="routeDaNang">Da Nang</span></button>
+            <button type="button" data-route="HAN-PQC">HAN → PQC <span data-i18n="routePhuQuoc">Phu Quoc</span></button>
+            <button type="button" data-route="SGN-CXR">SGN → CXR <span data-i18n="routeNhaTrang">Nha Trang</span></button>
+            <button type="button" data-route="HAN-DLI">HAN → DLI <span data-i18n="routeDaLat">Da Lat</span></button>
+          </div>
+        </div>
+
+        <div class="wrap content-grid" id="resultsSection">
+          <section class="results-area" aria-labelledby="resultsTitle">
+            <div class="section-heading">
+              <div><p class="eyebrow subtle" data-i18n="sampleFares">SAMPLE FARES · NO LIVE INVENTORY</p><h2 id="resultsTitle" data-i18n="availableFlights">Available Flights</h2></div>
+              <label class="sort-label"><span data-i18n="sortBy">Sort by</span><select id="sortSelect"><option value="price" data-i18n="priceSort">Price (Low to High)</option><option value="time" data-i18n="timeSort">Departure Time</option><option value="duration" data-i18n="durationSort">Shortest Flight</option></select></label>
+            </div>
+            <p id="resultsContext" class="results-context"></p><div id="resultsUpdate" class="results-update" hidden><span data-i18n="searchChanged"></span><button type="button" id="updateSearch" class="clear-filters" data-i18n="updateSearch"></button></div>
+            <div id="legNavigation" class="leg-navigation" hidden></div>
+            <div class="flight-filters" aria-label="Filter sample flights">
+              <label><span data-i18n="airlineFilter">Airline</span><select id="filterAirline"><option value="all" data-i18n="allAirlines">All airlines</option><option value="VN">Vietnam Airlines</option><option value="VJ">Vietjet Air</option><option value="BA">Bamboo Airways</option><option value="VT">Vietravel Airlines</option></select></label>
+              <label><span data-i18n="timeFilter">Departure</span><select id="filterTime"><option value="all" data-i18n="anyTime">Any time</option><option value="morning" data-i18n="morning">Morning · before 12</option><option value="afternoon" data-i18n="afternoon">Afternoon · 12–18</option><option value="evening" data-i18n="evening">Evening · after 18</option></select></label>
+              <label><span data-i18n="budgetFilter">Budget per person</span><select id="filterBudget"><option value="all" data-i18n="anyBudget">Any budget</option><option value="1500000">≤ 1.5m ₫</option><option value="2000000">≤ 2m ₫</option><option value="3000000">≤ 3m ₫</option></select></label>
+              <label class="direct-toggle"><input type="checkbox" id="filterDirect" /><span data-i18n="directOnly">Direct only</span></label>
+              <button type="button" class="clear-filters" id="resetFilters" data-i18n="resetFilters">Clear filters</button>
+            </div>
+            <div class="results-meta"><span id="resultCount" role="status"></span><span data-i18n="allInHint">All prices include taxes &amp; fees</span></div>
+            <div id="compareBar" class="compare-bar"></div>
+            <div id="flightList" class="flight-list" aria-live="polite"></div>
+          </section>
+          <aside class="summary-card" aria-labelledby="summaryTitle">
+            <div class="summary-heading"><div><span class="summary-kicker" data-i18n="yourTrip">YOUR TRIP</span><h2 id="summaryTitle" data-i18n="bookingSummary">Booking Summary</h2></div><svg class="summary-icon"><use href="#i-ticket"/></svg></div>
+            <div id="summaryBody"></div>
+          </aside>
+        </div>
+        <div class="wrap benefits">
+          <div><span class="benefit-icon"><svg><use href="#i-shield"/></svg></span><span><strong data-i18n="clearFares">Clear fares</strong><small data-i18n="clearFaresDesc">See your total before booking</small></span></div>
+          <div><span class="benefit-icon"><svg><use href="#i-headset"/></svg></span><span><strong data-i18n="helpfulSupport">Helpful support</strong><small data-i18n="helpfulSupportDesc">Answers when you need them</small></span></div>
+          <div><span class="benefit-icon"><svg><use href="#i-ticket"/></svg></span><span><strong data-i18n="simpleBooking">Simple booking</strong><small data-i18n="simpleBookingDesc">A few clear steps</small></span></div>
+          <div><span class="benefit-icon"><svg><use href="#i-globe"/></svg></span><span><strong data-i18n="moreRoutes">More routes</strong><small data-i18n="moreRoutesDesc">Explore sample destinations</small></span></div>
+        </div>
+      </section>
+
+      <section class="view utility-view" id="offersView" hidden><div class="wrap utility-content"><p class="eyebrow" data-i18n="offersKicker">A LITTLE EXTRA FOR YOUR JOURNEY</p><h1 data-i18n="offersTitle">Good fares. Better with a code.</h1><p class="utility-intro" data-i18n="offersIntro">Pick a demo voucher and apply it at checkout. One code per booking.</p><div id="offersList" class="offers-grid"></div><div class="offer-rules"><svg><use href="#i-shield"/></svg><p data-i18n="voucherRules">Demo offers only. Discounts apply to base fares; taxes stay unchanged. No real payments or tickets.</p></div><button type="button" class="button button-outline" data-view="flights" data-i18n="browseFlights">Browse flights</button></div></section>
+      <section class="view utility-view" id="bookingsView" hidden>
+        <div class="wrap utility-content"><p class="eyebrow" data-i18n="yourJourneys">YOUR JOURNEYS</p><h1 data-i18n="navBookings">My Bookings</h1><p class="utility-intro" data-i18n="bookingsIntro">Your demo bookings from this browser session appear here.</p><div id="bookingsList" class="bookings-list"></div></div>
+      </section>
+      <section class="view utility-view" id="manageView" hidden>
+        <div class="wrap utility-content"><p class="eyebrow" data-i18n="tripDetails">TRIP DETAILS</p><h1 data-i18n="navManage">Manage Booking</h1><p class="utility-intro" data-i18n="manageIntro">Look up a demo booking using its reference and email.</p>
+          <form id="lookupForm" class="lookup-form"><label class="field"><span data-i18n="bookingReference">Booking reference</span><span class="field-control"><svg><use href="#i-ticket"/></svg><input id="lookupCode" type="text" maxlength="6" autocomplete="off" placeholder="ABC123" required /></span></label><label class="field"><span data-i18n="email">Email</span><span class="field-control"><input id="lookupEmail" type="email" placeholder="you@example.com" required /></span></label><button class="button button-primary" type="submit" data-i18n="findBooking">Find booking</button></form>
+          <div id="lookupResult" aria-live="polite"></div>
+        </div>
+      </section>
+      <section class="view utility-view" id="supportView" hidden>
+        <div class="wrap utility-content support-content"><p class="eyebrow" data-i18n="helpCenter">HELP CENTER</p><h1 data-i18n="navSupport">Support</h1><p class="utility-intro" data-i18n="supportIntro">Quick answers about this SkyBook demo.</p><div id="faqList" class="faq-list"></div></div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><div class="wrap"><strong>SkyBook</strong><span data-i18n="footerNote">A flight booking prototype. Fares and bookings are examples; no real tickets or payments are issued.</span><span>© <span id="year"></span> SkyBook</span></div></footer>
+
+    <div class="modal-backdrop" id="modalBackdrop" hidden>
+      <section class="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close icon-button" type="button" id="closeModal" aria-label="Close dialog"><svg><use href="#i-close"/></svg></button>
+        <div id="modalContent"></div>
+      </section>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
+<script async src="/.netlify/scripts/hud?variant=public" data-nf-variant="public" data-netlify-site-id="9d74d3fa-3118-4ac1-bcde-2ff0dbbe2cd1" data-app-host="app.netlify.com"></script>

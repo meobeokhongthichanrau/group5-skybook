@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SkyBook mock rehearsal</title>
+<style>
+*{box-sizing:border-box}body{font:16px Arial,sans-serif;margin:0;background:#fff;color:#142c48}main{max-width:1000px;margin:auto;padding:28px}h1{font-size:30px}h2{font-size:22px}.notice{padding:16px;background:#fff4db;border-left:5px solid #996600;line-height:1.5}.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}label{display:grid;gap:7px}input,select,button{font:inherit;padding:10px;min-width:0;border:1px solid #aab8c7;border-radius:4px}button{background:#145da0;color:white;cursor:pointer;margin:12px 8px 0 0}button:disabled{opacity:.45;cursor:default}fieldset{margin:18px 0;padding:18px;border:1px solid #cbd5e1}section{margin:28px 0}#message{line-height:1.5;min-height:24px;overflow-wrap:anywhere}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f1f5f9;padding:16px;font-size:13px}.check{display:flex;gap:10px;margin:16px 0}.check input{width:18px}.summary{line-height:1.7;overflow-wrap:anywhere}a{color:#145da0}@media(max-width:600px){main{padding:16px}.fields{grid-template-columns:1fr}h1{font-size:25px}fieldset{padding:12px}}
+</style>
+<main>
+<h1>SkyBook core booking rehearsal</h1>
+<p class="notice"><strong>MOCK REHEARSAL.</strong> This page uses sample data and a mock RPC in page memory. No database, real payment, external Inventory, or real ticket. Reload clears sample bookings. Browser storage holds request metadata only.</p>
+<section><h2>1. Select a sample flight and enter details</h2>
+<form id="booking">
+<div class="fields"><label>Direct flight<select id="flight"><option value="00000000-0000-4000-8000-000000000001">DEMO-VN220 SGN to HAN</option><option value="00000000-0000-4000-8000-000000000002">DEMO-VN120 SGN to DAD</option></select></label><label>Fare class<select id="fare"><option>Economy Flex</option><option>Economy Basic</option></select></label></div>
+<fieldset><legend>Booker</legend><div class="fields"><label>Full name<input id="b-name" value="Demo Booker" required></label><label>Date of birth<input id="b-dob" type="date" value="1990-01-01" required></label><label>Email<input id="b-email" type="email" value="booker@example.test" required></label><label>Phone<input id="b-phone" value="0900000000" required></label></div></fieldset>
+<fieldset><legend>One adult traveler</legend><div class="fields"><label>Full name<input id="t-name" value="Demo Traveler" required></label><label>Date of birth<input id="t-dob" type="date" value="2000-01-01" required></label><label>Email<input id="t-email" type="email" value="traveler@example.test" required></label><label>Phone<input id="t-phone" value="0900000001" required></label></div></fieldset>
+<p>This rehearsal shows one adult. The prepared adapter and SQL support 1 to 9 travelers. Fare totals are fictional fixtures.</p>
+<label class="check"><input id="lose-response" type="checkbox">Lose the next create response after the mock has stored the booking</label>
+<button id="create" type="submit">Create or retry the same request</button>
+</form></section>
+<section><h2>2. Observe the booking and its original deadline</h2>
+<div class="summary"><strong>Status:</strong> <span id="booking-state">NO_BOOKING</span><br><strong>Booking ID:</strong> <span id="booking-id">None</span><br><strong>Hold:</strong> <span id="countdown">No hold</span><br><strong>Total:</strong> <span id="amount">None</span><br><strong>Mock PNR:</strong> <span id="pnr">None</span></div>
+<button id="recover" type="button">Read or recover the original request</button><button id="confirm" type="button" disabled>Simulate payment and commit</button><button id="new-request" type="button">Start a new request</button><button id="expire" type="button" disabled>Expire this unpaid sample hold</button><button id="reset" type="button">Reset rehearsal</button>
+<p id="message" role="status" aria-live="polite">Ready. Use fictional test details.</p>
+<details><summary>Mock receipt and RPC calls</summary><pre id="receipt">No receipt</pre><pre id="calls">No RPC calls</pre></details>
+</section>
+<p>The rehearsal calls the same <code>booking-adapter.mjs</code> as the integration harness. This demonstrates client behavior only. <a href="demo.html">Open the separate Supabase harness</a> after configuring and verifying a test project. SQL, RLS, and deployed Netlify behavior require separate checks.</p>
+</main><script type="module" src="rehearsal.mjs"></script></html>
